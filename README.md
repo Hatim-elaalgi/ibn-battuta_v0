@@ -4,10 +4,6 @@ A multimodal AI travel companion embodied as a 3D avatar of the 14th‑century M
 
 Everything AI runs locally: a vision‑language model (Qwen3‑VL‑4B) served by [LM Studio](https://lmstudio.ai), with no paid cloud API.
 
-<p align="center">
-  <img src="image.png" alt="The Ibn Battuta 3D avatar" width="560">
-</p>
-
 ---
 
 ## Features
