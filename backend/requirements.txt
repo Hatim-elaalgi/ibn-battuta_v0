@@ -8,3 +8,4 @@ chromadb>=0.4.22
 sentence-transformers>=2.3.0
 pyttsx3>=2.99
 SQLAlchemy>=2.0.25
+edge-tts>=6.1.0
