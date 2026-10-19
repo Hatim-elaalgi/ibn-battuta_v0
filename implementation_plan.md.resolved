@@ -1,0 +1,67 @@
+# AI Tourist Guide - MVP Scope Definition
+
+## Goal Description
+Build a "Tangier-only" AI tourist guide web app with an Ibn Battuta persona. The app will help users explore Tangier through conversation, leveraging a simple RAG knowledge base for local insights.
+
+## User Review Required
+> [!IMPORTANT]
+> **Scope Confirmation**: confirm that the initial data set will be limited to ~20 key locations in Tangier to ensure quality over quantity for the MVP.
+
+## MVP Scope (Must-Have)
+1.  **Persona Implementation**:
+    *   **Character**: Ibn Battuta.
+    *   **Tone**: 14th-century traveler, wise, observant, uses historical references, speaks in the first person ("I have seen...", "Travel allows...").
+    *   **Language**: Modern English (or user's language) with period-appropriate flourishes.
+
+2.  **Location Services**:
+    *   **Scope**: **Tangier, Morocco** only.
+    *   **Detection**: Browser Geolocation API to detect if user is in/near Tangier.
+    *   **Fallback**: If location unavailable or outside Tangier, assume a default starting point (e.g., The Kasbah) or ask user.
+
+3.  **Chat Interface**:
+    *   Clean, mobile-first chat UI.
+    *   History of current session.
+    *   Suggested starter questions (e.g., "Tell me about the Kasbah", "Where should I eat tagine?").
+
+4.  **RAG Knowledge Base (Simple)**:
+    *   **Data Source**: A curated JSON/Markdown file containing:
+        *   **POIs**: Kasbah Museum, Hercules Caves, Grand Socco, Petit Socco, American Legation, Perdicaris Park.
+        *   **Dining**: Café Hafa, Restaurant El Morocco Club, Salon Bleu, etc.
+    *   **Retrieval**: Simple keyword/embedding search against this local data.
+
+5.  **Poi & Restaurant Suggestions**:
+    *   Triggered by natural language queries.
+    *   Returns "Cards" with: Name, Description (in persona), Location/Map Link, Image (placeholder or generated).
+
+## Nice-to-Have (Post-MVP)
+*   User Accounts & History persistence.
+*   Multi-language support (Arabic, French, Spanish).
+*   Itinerary generation (Day trip planning).
+*   Voice Interaction (Speech-to-Text / Text-to-Speech).
+*   Live Weather integration.
+*   "Take me there" navigation (deep linking to Google/Apple Maps is sufficient for MVP).
+
+## Excluded (For Now)
+*   **Booking/Reservations**: No integration with booking platforms.
+*   **Social Features**: No sharing, reviews, or friend finding.
+*   **Other Cities**: Strictly limited to Tangier.
+*   **Complex RAG**: No web scraping or live internet search for new places; restricted to curated database to prevent hallucinations.
+*   **Payment Processing**: The app is free/informational.
+
+## Technical Architecture
+### Frontend
+*   **Framework**: React (Vite)
+*   **Styling**: Tailwind CSS (Mobile-first, "Premium/Travel" aesthetic)
+*   **Icons**: Lucide React
+*   **Maps**: Leaflet or simple static map images for MVP.
+
+### Backend / AI
+*   **LLM Integration**: Direct API calls (e.g., Gemini/OpenAI) with system prompt engineering.
+*   **State**: LocalStorage for session history.
+
+## Verification Plan
+### Manual Verification
+1.  **Persona Check**: Ask "Who are you?" -> Ensure response identifies as Ibn Battuta.
+2.  **Location Boundary**: Ask about "Casablanca" -> Ensure polite refusal/redirection to Tangier.
+3.  **Data Accuracy**: Ask for "Coffee with a view" -> Verify recommendation of *Café Hafa*.
+4.  **Geolocation**: Test with and without location permissions.

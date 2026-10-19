@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/Scripts/pip show *)",
+      "Bash(npm install *)",
+      "Bash(pip install *)",
+      "Bash(python -c \"import sqlalchemy; print\\('SQLAlchemy', sqlalchemy.__version__\\)\")",
+      "Bash(curl -sf http://127.0.0.1:8000/api/v1/health)",
+      "Bash(python -c ' *)",
+      "Bash(uvicorn app.main:app --host 127.0.0.1 --port 8000)",
+      "Read(//c/Users/HP/.claude/plans/**)",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "WebFetch(domain:opentripmap.io)",
+      "WebFetch(domain:wiki.openstreetmap.org)",
+      "WebFetch(domain:www.mediawiki.org)",
+      "WebFetch(domain:en.wikivoyage.org)",
+      "WebFetch(domain:query.wikidata.org)",
+      "WebFetch(domain:dev.opentripmap.org)",
+      "WebFetch(domain:worldindata.hashnode.dev)",
+      "WebFetch(domain:rapidapi.com)",
+      "WebFetch(domain:gist.github.com)",
+      "Bash(python scripts/ingest_morocco.py --dry-run)",
+      "Bash(python scripts/ingest_morocco.py)",
+      "Bash(python scripts/ingest_morocco.py --no-rag)",
+      "Bash(npx vite *)",
+      "Bash(python -c \"from app.services.itinerary_generator import generate_itinerary, fetch_candidates, pass_plan, pass_select, pass_narrate, _normalize_city; print\\('OK'\\)\")"
+    ]
+  }
+}

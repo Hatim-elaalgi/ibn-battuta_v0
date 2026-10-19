@@ -1,0 +1,31 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node / build output
+node_modules/
+dist/
+
+# Local databases (recreate via backend/database_schema.sql and backend/scripts/ingest_morocco.py)
+*.db
+*.sqlite3
+chroma_db/
+
+# Raw 3D model exports (the app uses the converted ibn-battuta.glb)
+/Meshy_AI_Portrait_of_a_Turbane_0420231534_texture_obj/
+/Meshy_AI_Portrait_of_a_Turbane_0420231534_texture_obj.zip
+frontend/public/models/ibn-battuta/Meshy_AI_*
+
+# Personal editor / Claude settings
+.claude/settings.local.json
+
+# OS
+.DS_Store
+Thumbs.db

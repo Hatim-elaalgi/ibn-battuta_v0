@@ -1,0 +1,149 @@
+/* Tangier — Design tokens
+   Aman-hushed, museum-grade. Bone, ink, ochre. */
+
+:root {
+  /* — Color —————————————————————————————— */
+  --bone:        oklch(0.962 0.008 85);   /* primary surface */
+  --bone-deep:   oklch(0.935 0.010 82);   /* alternate surface */
+  --plaster:     oklch(0.890 0.014 75);   /* warm tonal layer */
+  --clay:        oklch(0.780 0.022 60);   /* secondary tonal */
+  --ink:         oklch(0.205 0.012 60);   /* primary text */
+  --ink-soft:    oklch(0.360 0.014 60);   /* secondary text */
+  --ink-mute:    oklch(0.520 0.014 60);   /* tertiary text */
+  --ochre:       oklch(0.520 0.105 55);   /* the only accent */
+  --ochre-deep:  oklch(0.420 0.105 50);
+  --line:        oklch(0.760 0.012 60);   /* hairline */
+  --line-soft:   oklch(0.860 0.010 70);
+
+  /* — Type ———————————————————————————————— */
+  --f-display: "Cormorant Garamond", "EB Garamond", Garamond, serif;
+  --f-body:    "EB Garamond", Garamond, "Times New Roman", serif;
+  --f-arabic:  "Amiri", "Noto Naskh Arabic", serif;
+  --f-mono:    "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* — Slide scale (1920×1080) —————————————— */
+  --pad-x: 100px;
+  --pad-t: 100px;
+  --pad-b: 80px;
+}
+
+/* Type scale — projection sizes */
+.t-eyebrow { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); font-weight: 400; }
+.t-folio   { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.04em; color: var(--ink-mute); font-variant-numeric: tabular-nums; }
+.t-display { font-family: var(--f-display); font-weight: 400; font-size: 168px; line-height: 0.95; letter-spacing: -0.02em; color: var(--ink); }
+.t-title   { font-family: var(--f-display); font-weight: 400; font-size: 96px; line-height: 1.02; letter-spacing: -0.015em; color: var(--ink); }
+.t-h2      { font-family: var(--f-display); font-weight: 400; font-size: 64px; line-height: 1.05; letter-spacing: -0.01em; color: var(--ink); }
+.t-lede    { font-family: var(--f-body); font-weight: 400; font-style: italic; font-size: 38px; line-height: 1.32; color: var(--ink-soft); letter-spacing: -0.005em; }
+.t-body    { font-family: var(--f-body); font-weight: 400; font-size: 30px; line-height: 1.45; color: var(--ink); }
+.t-small   { font-family: var(--f-body); font-weight: 400; font-size: 26px; line-height: 1.45; color: var(--ink-soft); }
+.t-caption { font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-mute); font-weight: 400; }
+.t-arabic  { font-family: var(--f-arabic); color: var(--ink); direction: rtl; font-weight: 400; }
+
+/* — Slide chrome ————————————————————————— */
+deck-stage { background: var(--bone); }
+deck-stage section {
+  background: var(--bone);
+  color: var(--ink);
+  padding: var(--pad-t) var(--pad-x) var(--pad-b);
+  position: relative;
+  overflow: hidden;
+}
+deck-stage section.dark {
+  background: var(--ink);
+  color: var(--bone);
+}
+deck-stage section.dark .t-display,
+deck-stage section.dark .t-title,
+deck-stage section.dark .t-h2,
+deck-stage section.dark .t-body,
+deck-stage section.dark .t-arabic { color: var(--bone); }
+deck-stage section.dark .t-eyebrow,
+deck-stage section.dark .t-folio,
+deck-stage section.dark .t-caption,
+deck-stage section.dark .t-lede,
+deck-stage section.dark .t-small { color: oklch(0.78 0.012 70); }
+deck-stage section.plaster { background: var(--plaster); }
+
+/* — Persistent slide chrome (rule + folio) — */
+.frame-rule {
+  position: absolute;
+  left: var(--pad-x);
+  right: var(--pad-x);
+  top: 56px;
+  height: 1px;
+  background: var(--line);
+  opacity: 0.7;
+}
+.dark .frame-rule { background: oklch(0.55 0.01 60); opacity: 0.5; }
+.frame-mark {
+  position: absolute;
+  top: 26px;
+  left: var(--pad-x);
+  right: var(--pad-x);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--f-mono);
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.dark .frame-mark { color: oklch(0.75 0.01 70); }
+.frame-mark .mark-l { display: flex; gap: 28px; }
+.frame-mark .mark-l .dot { color: var(--ochre); }
+.frame-mark .arabic-mark { font-family: var(--f-arabic); font-size: 22px; letter-spacing: 0; text-transform: none; }
+
+/* — Reusable bits ————————————————————————— */
+.hairline { height: 1px; background: var(--line); border: none; }
+.hairline-soft { height: 1px; background: var(--line-soft); border: none; }
+
+.swatch {
+  border: 1px solid var(--line-soft);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  height: 320px;
+}
+.swatch-meta { display: flex; justify-content: space-between; align-items: baseline; }
+
+.placeholder {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 14px,
+      rgba(0,0,0,0.025) 14px 15px
+    ),
+    var(--plaster);
+  border: 1px solid var(--line-soft);
+  position: relative;
+  overflow: hidden;
+}
+.placeholder.dark-ph {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 14px,
+      rgba(255,255,255,0.04) 14px 15px
+    ),
+    oklch(0.30 0.012 60);
+  border-color: oklch(0.40 0.012 60);
+}
+.placeholder .ph-label {
+  position: absolute;
+  bottom: 18px;
+  left: 22px;
+  font-family: var(--f-mono);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.placeholder.dark-ph .ph-label { color: oklch(0.78 0.01 70); }
+
+.col { display: flex; flex-direction: column; }
+.row { display: flex; }
+
+/* — Numerals ————————————————————————————— */
+.tabular { font-variant-numeric: tabular-nums; }

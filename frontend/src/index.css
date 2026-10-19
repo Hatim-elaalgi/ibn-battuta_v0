@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+/* ════════════════════════════════════════════════════════════════════════
+   Tangier — design system  (bone · ink · ochre)
+   Aman-hushed, museum-grade. Adapted from the projection deck for web sizes.
+   ──────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* ── Surfaces (oklch, perceptual) ────────────────────────────── */
+  --color-bone:        oklch(0.962 0.008 85);   /* primary surface */
+  --color-bone-deep:   oklch(0.935 0.010 82);   /* alternate surface */
+  --color-plaster:     oklch(0.890 0.014 75);   /* warm tonal layer */
+  --color-clay:        oklch(0.780 0.022 60);   /* secondary tonal */
+
+  /* ── Inks (warm dark text) ───────────────────────────────────── */
+  --color-ink:         oklch(0.205 0.012 60);   /* primary text + dark surface */
+  --color-ink-soft:    oklch(0.360 0.014 60);   /* secondary text */
+  --color-ink-mute:    oklch(0.520 0.014 60);   /* tertiary / metadata */
+
+  /* ── Single accent ───────────────────────────────────────────── */
+  --color-ochre:       oklch(0.520 0.105 55);   /* the only accent */
+  --color-ochre-deep:  oklch(0.420 0.105 50);
+
+  /* ── Hairlines ───────────────────────────────────────────────── */
+  --color-line:        oklch(0.760 0.012 60);
+  --color-line-soft:   oklch(0.860 0.010 70);
+
+  /* Inverted hairlines (on dark surfaces) */
+  --color-line-dark:   oklch(0.42 0.012 60);
+
+  /* ── Type families ───────────────────────────────────────────── */
+  --font-display: "Cormorant Garamond", "EB Garamond", Garamond, serif;
+  --font-body:    "EB Garamond", Garamond, "Times New Roman", serif;
+  --font-arabic:  "Amiri", "Noto Naskh Arabic", serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Tailwind v4 maps `--font-sans` to `font-sans` utility — point it at body */
+  --font-sans:    "EB Garamond", Garamond, "Times New Roman", serif;
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-bone);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Typography utilities — web-scaled from the deck's t-* classes.
+   Use these on real elements; do not duplicate sizes inline.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.t-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute);
+  font-weight: 400;
+}
+
+.t-folio,
+.t-caption {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute);
+  font-weight: 400;
+  font-feature-settings: "tnum" 1;
+}
+
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 56px;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.t-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  color: var(--color-ink);
+}
+
+.t-h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: -0.008em;
+  color: var(--color-ink);
+}
+
+.t-lede {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--color-ink-soft);
+  letter-spacing: -0.003em;
+}
+
+.t-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--color-ink);
+}
+
+.t-small {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.t-arabic {
+  font-family: var(--font-arabic);
+  color: var(--color-ink);
+  direction: rtl;
+  font-weight: 400;
+}
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Dark-surface inverts (.on-ink) ───────────────────────────────── */
+.on-ink { background: var(--color-ink); color: var(--color-bone); }
+.on-ink .t-display,
+.on-ink .t-title,
+.on-ink .t-h2,
+.on-ink .t-body,
+.on-ink .t-arabic         { color: var(--color-bone); }
+.on-ink .t-eyebrow,
+.on-ink .t-folio,
+.on-ink .t-caption,
+.on-ink .t-lede,
+.on-ink .t-small          { color: oklch(0.78 0.012 70); }
+
+/* ════════════════════════════════════════════════════════════════════════
+   Frame chrome — the persistent rule + mark used on every "plate".
+   ──────────────────────────────────────────────────────────────────────── */
+
+.frame-rule {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 36px;
+  height: 1px;
+  background: var(--color-line);
+  opacity: 0.7;
+  pointer-events: none;
+}
+.on-ink .frame-rule { background: var(--color-line-dark); opacity: 0.6; }
+
+.frame-mark {
+  position: absolute;
+  top: 16px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute);
+  pointer-events: none;
+}
+.on-ink .frame-mark { color: oklch(0.78 0.012 70); }
+.frame-mark .mark-l { display: flex; gap: 12px; align-items: baseline; }
+.frame-mark .mark-l .dot { color: var(--color-ochre); }
+.frame-mark .arabic-mark {
+  font-family: var(--font-arabic);
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ── Hairlines ──────────────────────────────────────────────────── */
+.hairline      { height: 1px; background: var(--color-line);      border: 0; }
+.hairline-soft { height: 1px; background: var(--color-line-soft); border: 0; }
+.on-ink .hairline,
+.on-ink .hairline-soft { background: var(--color-line-dark); }
+
+/* ════════════════════════════════════════════════════════════════════════
+   Scrollbars — quiet, ochre-tinted on bone, bone-tinted on ink.
+   ──────────────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar          { width: 6px; height: 6px; }
+::-webkit-scrollbar-track    { background: transparent; }
+::-webkit-scrollbar-thumb    { background: var(--color-line); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-mute); }
+.on-ink ::-webkit-scrollbar-thumb { background: oklch(0.50 0.012 60); }
+
+/* ════════════════════════════════════════════════════════════════════════
+   Leaflet polish — replace its rounded boxes/shadows with our chrome.
+   ──────────────────────────────────────────────────────────────────────── */
+.leaflet-container             { font-family: var(--font-body); background: var(--color-bone-deep); }
+.leaflet-popup-content-wrapper {
+  background: var(--color-bone);
+  color: var(--color-ink);
+  border: 1px solid var(--color-line);
+  border-radius: 0;
+  box-shadow: none;
+}
+.leaflet-popup-tip {
+  background: var(--color-bone);
+  border: 1px solid var(--color-line);
+}
+.leaflet-popup-content { margin: 14px 16px; }
+.leaflet-control-attribution {
+  background: oklch(0.962 0.008 85 / 0.85) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 9px !important;
+  letter-spacing: 0.04em !important;
+  color: var(--color-ink-mute) !important;
+  border: 0 !important;
+}
+.leaflet-control-zoom a {
+  background: var(--color-bone) !important;
+  color: var(--color-ink) !important;
+  border: 1px solid var(--color-line) !important;
+  border-radius: 0 !important;
+  font-family: var(--font-display) !important;
+  font-weight: 300 !important;
+}
